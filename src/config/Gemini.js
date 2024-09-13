@@ -1,9 +1,8 @@
 import {
-    GoogleGenerativeAI,
-    HarmCategory,
-    HarmBlockThreshold,
-  }  from "@google/generative-ai";
-const APIKey = "AIzaSyDIPOsBx-9DqOmwoCaP43b3TeWctY9otAo";
+  GoogleGenerativeAI,
+  HarmCategory,
+  HarmBlockThreshold,
+} from "@google/generative-ai";
 
 /*
  * Install the Generative AI SDK
@@ -17,9 +16,7 @@ const APIKey = "AIzaSyDIPOsBx-9DqOmwoCaP43b3TeWctY9otAo";
  * $ npm install @google/generative-ai
  */
 
-
-
-const apiKey = process.env.GEMINI_API_KEY || APIKey;
+const apiKey = process.env.REACT_APP_API_URL_FOR_BARD;
 const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({
@@ -43,12 +40,10 @@ async function run(prompt) {
   });
 
   const result = await chatSession.sendMessage(prompt);
- 
 
-  const usersChart = result.response.text()
+  const usersChart = result.response.text();
 
-  return usersChart
-
+  return usersChart;
 }
 
 export default run;
