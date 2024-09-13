@@ -157,10 +157,8 @@
   }
 }
 
-
-.result-data p{
-
-  font-size:17px;
-  font-weight:300;
-  line-height:1.8;
+.result-data p {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.8;
 }
