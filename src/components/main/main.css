@@ -109,3 +109,8 @@
   text-align: center;
   font-weight: 300;
 }
+.result{
+  padding:0px 5%;
+  max-height:70vh;
+  overflow-y:scroll;
+}
