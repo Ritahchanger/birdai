@@ -46,11 +46,12 @@ const Main = () => {
               <img src={assets.send_icon} alt="" />
             </div>
           </div>
-        </div>
-        <p className="bottom-info">
+          <p className="bottom-info">
           Gemini may display inaccurate info, including about people, so
           double-check its responses. Your privacy & Gemini Apps
         </p>
+        </div>
+       
       </div>
     </div>
   );
