@@ -1,49 +1,99 @@
-.main{
-    flex:1;
-    min-height:100vh;
-    padding-bottom:15vh;
-    position: relative;
+.main {
+  flex: 1;
+  min-height: 100vh;
+  padding-bottom: 15vh;
+  position: relative;
 }
-.main .nav{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    font-size:22px;
-    padding:20px;
-    color:#585858;
+.main .nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 22px;
+  padding: 20px;
+  color: #585858;
 }
-.main .nav img{
-    width:40px;
-    border-radius:50%;
+.main .nav img {
+  width: 40px;
+  border-radius: 50%;
 }
-.main .main-container{
-    max-width:900px;
-    margin:auto;
+.main .main-container {
+  max-width: 900px;
+  margin: auto;
 }
-.main .greet{
-    margin:50px 0px;
-    font-size:56px;
-    color:#c4c7c5;
-    padding:20px;
+.main .greet {
+  margin: 50px 0px;
+  font-size: 56px;
+  color: #c4c7c5;
+  padding: 20px;
 }
-.main .greet span{
+.main .greet span {
+  background: -webkit-linear-gradient(16deg, #4b90ff, #ff5546);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.main .cards {
+  display: grid;
 
-    background:-webkit-linear-gradient(16deg,#4b90ff,#ff5546);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+  padding: 20px;
 }
-.main .cards{
-    display:grid;
+.main .cards .card {
+  height: 200px;
+  padding: 15px;
+  background-color: #f0f4f9;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+}
+.main .card img {
+  width: 35px;
+  padding: 5px;
+  position: absolute;
+  background-color: #fff;
+  border-radius: 20px;
+  bottom: 10px;
+  right: 10px;
+}
+.main .card p {
+  color: #585858;
+  font-size: 17px;
+}
+.main .card:hover {
+  background-color: #dfe4ea;
+}
+.main .main-bottom {
+  position: absolute;
 
-    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-    gap:15px;
-    padding:20px;
+  bottom: 0;
+
+  width: 100%;
+
+  max-width: 900px;
+
+  padding: 0px 20px;
+
+  margin: auto;
 }
-.main .cards .card{
-    height:200px;
-    padding:15px;
-    background-color:#f0f4f9;
-    border-radius:10px;
-    position: relative;
-    cursor: pointer;
+
+.search-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background-color: #f0f4f9;
+  padding: 10px 20px;
+  border-radius: 50px;
+}
+.search-box img {
+  width: 24px;
+  cursor: pointer;
+}
+.search-box input {
+  flex: 1;
+  background: transparent;
+  outline: none;
+  border: none;
+  padding: 8px;
+  font-size: 18px;
 }
