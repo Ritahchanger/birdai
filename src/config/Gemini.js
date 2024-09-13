@@ -44,7 +44,7 @@ async function run(prompt) {
 
   const result = await chatSession.sendMessage(prompt);
  
-  console.log(result.response.text());
+
   const usersChart = result.response.text()
 
   return usersChart
