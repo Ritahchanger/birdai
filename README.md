@@ -1,4 +1,5 @@
 # BirdAI - Gemini Clone
+![BirdAI Overview](./src/assets/gemini.png)  <!-- Ensure this path is correct relative to your README.md file -->
 
 **BirdAI** is a clone of the Gemini AI application, built using React with the Context API for state management, custom CSS for styling, and integration with the Gemini API. This project showcases the ability to build an AI-powered chat application with a clean, user-friendly interface.
 
