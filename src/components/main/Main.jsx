@@ -1,7 +1,9 @@
 import "./main.css";
 import { assets } from "../../assets/assets";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Context } from "../../context/context";
+import { IoMdArrowDropdownCircle } from "react-icons/io";
+
 const Main = () => {
   const {
     onSent,
@@ -13,10 +15,46 @@ const Main = () => {
     input,
   } = useContext(Context);
 
+  const [isOpen, setIsOpen] = useState(true);
+  const [selectedTopic, setSelectedTopic] = useState("Attitude");
+
+  const toggleDropdown = () => {
+    setIsOpen((prevState) => !prevState);
+  };
+
+  const handleTopicSelect = (topic) => {
+    setSelectedTopic(topic);
+    toggleDropdown(); // Close dropdown after selection (optional)
+  };
+
   return (
     <div className="main">
       <div className="nav">
-        <p>Gemini</p>
+        <div className="left-nav" onClick={toggleDropdown}>
+          <p style={{
+            fontSize:"1rem"
+          }}>Attitude</p>
+          <span className={`${isOpen ? "active" : ""}`}>
+            <IoMdArrowDropdownCircle />
+          </span>
+          {isOpen && (
+            <div className="custom-drop-down">
+              <ul>
+                <li onClick={() => handleTopicSelect("Chat bot")}>Chat bot</li>
+                <li onClick={() => handleTopicSelect("Paraphrase")}>
+                  Paraphrase
+                </li>
+                <li onClick={() => handleTopicSelect("Summarize Text")}>
+                  Summarize Text
+                </li>
+                <li onClick={() => handleTopicSelect("Brainstorm")}>
+                  Brainstorm
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+        <p className="title">{selectedTopic.toUpperCase()}</p>
         <img src={assets.user_icon} alt="" />
       </div>
       <div className="main-container">
@@ -24,27 +62,9 @@ const Main = () => {
           <>
             <div className="greet">
               <p>
-                <span>Hello, Dev</span>
-                <p>How can I help you today?</p>
+                <span>Hello, Friend</span>
+                <p>I can help you</p>
               </p>
-            </div>
-            <div className="cards">
-              <div className="card">
-                <p>Suggest beautiful places to see on an upcomming road trip</p>
-                <img src={assets.compass_icon} alt="" />
-              </div>
-              <div className="card">
-                <p>Briefly summarize this concept: urban planning</p>
-                <img src={assets.bulb_icon} alt="" />
-              </div>
-              <div className="card">
-                <p>Brainstorm team bonding activities for our work retreat</p>
-                <img src={assets.menu_icon} alt="" />
-              </div>
-              <div className="card">
-                <p>Update readability of the following code</p>
-                <img src={assets.code_icon} alt="" />
-              </div>
             </div>
           </>
         ) : (
@@ -55,13 +75,11 @@ const Main = () => {
               <p>{recentPrompt}</p>
             </div>
             <div className="result-data">
-              <img src={assets.gemini_icon} alt="" />
+              <img src={assets.gemini_icon} alt="" className="gemini-icon"  />
 
               {loading ? (
-                <div className="loader">
-                  <hr />
-                  <hr />
-                  <hr />
+                <div className="preloader">
+                  <div className="spinner"></div>
                 </div>
               ) : (
                 <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
@@ -81,9 +99,6 @@ const Main = () => {
               value={input}
             />
             <div>
-              <img src={assets.gallery_icon} alt="" />
-
-              <img src={assets.mic_icon} alt="" />
               <img
                 src={assets.send_icon}
                 alt=""
@@ -94,7 +109,7 @@ const Main = () => {
             </div>
           </div>
           <p className="bottom-info">
-            Gemini may display inaccurate info, including about people, so
+            Attitude may display inaccurate info, including about people, so
             double-check its responses. Your privacy & Gemini Apps
           </p>
         </div>

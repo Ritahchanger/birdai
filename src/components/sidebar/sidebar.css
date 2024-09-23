@@ -3,8 +3,10 @@
   display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
-  background: #f0f4f9;
+  /* background: #f0f4f9; */
   padding: 25px 15px;
+  background: #4a90e2;
+  border-right:2px solid #fff;
 }
 .sidebar img {
   width: 20px;
