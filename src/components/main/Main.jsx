@@ -31,9 +31,13 @@ const Main = () => {
     <div className="main">
       <div className="nav">
         <div className="left-nav" onClick={toggleDropdown}>
-          <p style={{
-            fontSize:"1rem"
-          }}>Attitude</p>
+          <p
+            style={{
+              fontSize: "1rem",
+            }}
+          >
+            Attitude
+          </p>
           <span className={`${isOpen ? "active" : ""}`}>
             <IoMdArrowDropdownCircle />
           </span>
@@ -75,7 +79,7 @@ const Main = () => {
               <p>{recentPrompt}</p>
             </div>
             <div className="result-data">
-              <img src={assets.gemini_icon} alt="" className="gemini-icon"  />
+              <img src={assets.gemini_icon} alt="" className="gemini-icon" />
 
               {loading ? (
                 <div className="preloader">
