@@ -53,7 +53,7 @@ const Main = ({ selectedTopic, setSelectedTopic }) => {
     <div className="main">
       <div className="nav">
         <div className="left-nav" onClick={toggleDropdown}>
-          <p style={{ fontSize: "1rem" }}>Attitude</p>
+          <p style={{ fontSize: "1rem" }}>Altitude</p>
           <span className={`${isOpen ? "active" : ""}`}>
             <IoMdArrowDropdownCircle />
           </span>
@@ -123,7 +123,7 @@ const Main = ({ selectedTopic, setSelectedTopic }) => {
             </div>
           </div>
           <p className="bottom-info">
-            Attitude may display inaccurate info, including about people, so
+            Altitude may display inaccurate info, including about people, so
             double-check its responses. Your privacy & Gemini Apps
           </p>
         </div>
