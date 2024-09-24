@@ -6,7 +6,7 @@
   /* background: #f0f4f9; */
   padding: 25px 15px;
   background: #4a90e2;
-  border-right:2px solid #fff;
+  border-right: 2px solid #fff;
 }
 .sidebar img {
   width: 20px;
@@ -44,6 +44,14 @@
   flex-direction: column;
 
   animation: fadeIn 1.5s;
+
+  max-height: calc(100vh - 300px);
+
+  overflow-y: scroll;
+
+  padding-right: 1rem;
+
+  margin-right: -14px;
 }
 
 .sidebar .recent-title {
@@ -81,10 +89,8 @@
   cursor: pointer;
 }
 
-
-
-@media(max-width:600px){
-  .sidebar{
-    display:none;
+@media (max-width: 600px) {
+  .sidebar {
+    display: none;
   }
 }

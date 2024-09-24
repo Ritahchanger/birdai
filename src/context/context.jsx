@@ -17,51 +17,34 @@ const ContextProvider = (props) => {
     }, 75 * index);
   };
 
-  const newChat = ()=>{
+  const newChat = () => {
+    setLoading(false);
+    setShowResult(false);
+    setResultData(""); // Clear previous results
+    setInput(""); // Reset input for new chat
+  };
 
-    setLoading(false)
-
-    setShowResult(false)
-
-
-
-  }
-
-  const onSent = async (prompt) => {
+  const onSent = async (subject, prompt = input, source_lang) => {
     try {
       setResultData("");
       setLoading(true);
       setShowResult(true);
+      setRecentPrompt(prompt);
 
-      let response;
-
-      if (prompt !== undefined) {
-        response = await run(prompt);
-
-        setRecentPrompt(input);
-      } else {
+      if (!prevPrompts.includes(input)) {
         setPrevPrompts((prev) => [...prev, input]);
-
-        setRecentPrompt(input)
-
-        response = await run(input);
       }
 
-     
-
+      const response = await run(subject, prompt, source_lang);
+      
       let responseArray = response.split("**");
       let newResponse = "";
 
       for (let i = 0; i < responseArray.length; i++) {
-        if (i === 0 || i % 2 !== 1) {
-          newResponse += responseArray[i];
-        } else {
-          newResponse += "<b>" + responseArray[i] + "</b>";
-        }
+        newResponse += (i % 2 === 0) ? responseArray[i] : `<b>${responseArray[i]}</b>`;
       }
 
       let formattedResponse = newResponse.split("*").join("<br/>");
-
       let responseWords = formattedResponse.split(" ");
 
       responseWords.forEach((word, i) => {
@@ -69,9 +52,7 @@ const ContextProvider = (props) => {
       });
     } catch (error) {
       console.error("Error occurred while fetching the response:", error);
-      setResultData(
-        "There was an error processing your request. Please try again."
-      );
+      setResultData("There was an error processing your request. Please try again.");
     } finally {
       setLoading(false);
       setInput("");

@@ -5,15 +5,15 @@ import "./sidebar.css";
 import { assets } from "../../assets/assets";
 import { Context } from "../../context/context";
 
-const Sidebar = () => {
+const Sidebar = ({ selectedTopic }) => {
   const [extended, setExtended] = useState(true);
 
-  const { onSent, prevPrompts, setRecentPrompt,newChat } = useContext(Context);
+  const { onSent, prevPrompts, setRecentPrompt, newChat } = useContext(Context);
 
   const loadPrompt = async (prompt) => {
     setRecentPrompt(prompt);
 
-    await onSent(prompt);
+    await onSent("generate_text", prompt, selectedTopic);
   };
 
   return (
@@ -25,13 +25,13 @@ const Sidebar = () => {
           alt=""
           onClick={() => setExtended((prev) => !prev)}
         />
-        <div className="new-chat" onClick={()=>newChat()} >
+        <div className="new-chat" onClick={() => newChat()}>
           <img src={assets.plus_icon} alt="" />
           {extended ? <p>New Chat</p> : null}
         </div>
         {extended ? (
-          <div className="recent"> 
-             <p className="recent-title">Recent</p>
+          <div className="recent">
+            <p className="recent-title">Recent</p>
             {prevPrompts.map((item, index) => {
               return (
                 <div

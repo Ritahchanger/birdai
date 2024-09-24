@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { Context } from "../../context/context";
 import { IoMdArrowDropdownCircle } from "react-icons/io";
 
-const Main = () => {
+const Main = ({ selectedTopic, setSelectedTopic }) => {
   const {
     onSent,
     recentPrompt,
@@ -15,72 +15,83 @@ const Main = () => {
     input,
   } = useContext(Context);
 
-  const [isOpen, setIsOpen] = useState(true);
-  const [selectedTopic, setSelectedTopic] = useState("Attitude");
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
-    setIsOpen((prevState) => !prevState);
+    setIsOpen((prevIsOpen) => !prevIsOpen);
   };
 
-  const handleTopicSelect = (topic) => {
-    setSelectedTopic(topic);
-    toggleDropdown(); // Close dropdown after selection (optional)
+  const handleTopicSelect = (selected) => {
+    setSelectedTopic(selected);
+  };
+
+  const getTitle = () => {
+    switch (selectedTopic) {
+      case "luo_Latn":
+        return "LUO";
+      case "kik_Latn":
+        return "KIKUYU";
+      case "kam_Latn":
+        return "KAMBA";
+      case "swh_Latn":
+        return "SWAHILI";
+      case "eng_Latn":
+        return "ENGLISH";
+      default:
+        return "SWAHILI";
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      onSent("generate_text", input, selectedTopic);
+      setInput(""); // Optionally clear the input after submission
+    }
   };
 
   return (
     <div className="main">
       <div className="nav">
         <div className="left-nav" onClick={toggleDropdown}>
-          <p
-            style={{
-              fontSize: "1rem",
-            }}
-          >
-            Attitude
-          </p>
+          <p style={{ fontSize: "1rem" }}>Attitude</p>
           <span className={`${isOpen ? "active" : ""}`}>
             <IoMdArrowDropdownCircle />
           </span>
           {isOpen && (
             <div className="custom-drop-down">
               <ul>
-                <li onClick={() => handleTopicSelect("Chat bot")}>Chat bot</li>
-                <li onClick={() => handleTopicSelect("Paraphrase")}>
-                  Paraphrase
-                </li>
-                <li onClick={() => handleTopicSelect("Summarize Text")}>
-                  Summarize Text
-                </li>
-                <li onClick={() => handleTopicSelect("Brainstorm")}>
-                  Brainstorm
-                </li>
+                <li onClick={() => handleTopicSelect("luo_Latn")}>Luo</li>
+                <li onClick={() => handleTopicSelect("kik_Latn")}>Kikuyu</li>
+                <li onClick={() => handleTopicSelect("kam_Latn")}>Kamba</li>
+                <li onClick={() => handleTopicSelect("swh_Latn")}>Swahili</li>
+                <li onClick={() => handleTopicSelect("eng_Latn")}>English</li>
               </ul>
             </div>
           )}
         </div>
-        <p className="title">{selectedTopic.toUpperCase()}</p>
-        <img src={assets.user_icon} alt="" />
+        <p className="title">{getTitle()}</p>
+        <img src={assets.user_icon} alt="User Icon" />
       </div>
       <div className="main-container">
         {!showResult ? (
-          <>
-            <div className="greet">
-              <p>
-                <span>Hello, Friend</span>
-                <p>I can help you</p>
-              </p>
-            </div>
-          </>
+          <div className="greet">
+            <p>
+              <span>Hello, Friend</span>
+              <p>I can help you</p>
+            </p>
+          </div>
         ) : (
           <div className="result">
             <div className="result-title">
-              <img src={assets.user_icon} alt="" />
-
+              <img src={assets.user_icon} alt="User Icon" />
               <p>{recentPrompt}</p>
             </div>
             <div className="result-data">
-              <img src={assets.gemini_icon} alt="" className="gemini-icon" />
-
+              <img
+                src={assets.gemini_icon}
+                alt="Gemini Icon"
+                className="gemini-icon"
+              />
               {loading ? (
                 <div className="preloader">
                   <div className="spinner"></div>
@@ -96,18 +107,17 @@ const Main = () => {
           <div className="search-box">
             <input
               type="text"
-              name=""
-              id=""
               placeholder="Enter something to search.."
               onChange={(e) => setInput(e.target.value)}
               value={input}
+              onKeyDown={handleKeyDown} // Added keydown event listener
             />
             <div>
               <img
                 src={assets.send_icon}
-                alt=""
+                alt="Send Icon"
                 onClick={() => {
-                  onSent();
+                  onSent("generate_text", input, selectedTopic);
                 }}
               />
             </div>
