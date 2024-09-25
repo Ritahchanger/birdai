@@ -124,7 +124,7 @@ const Main = ({ selectedTopic, setSelectedTopic }) => {
           </div>
           <p className="bottom-info">
             Altitude may display inaccurate info, including about people, so
-            double-check its responses. Your privacy & Gemini Apps
+            double-check its responses. 
           </p>
         </div>
       </div>
