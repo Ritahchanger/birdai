@@ -76,8 +76,8 @@ const Main = ({ selectedTopic, setSelectedTopic }) => {
         {!showResult ? (
           <div className="greet">
             <p>
-              <span>Hello, Friend</span>
-              <p>I can help you</p>
+              <span>Niaje, Rafiki</span>
+              <p>Naeza kusaidia, aje?</p>
             </p>
           </div>
         ) : (
